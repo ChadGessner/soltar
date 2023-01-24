@@ -1,0 +1,18 @@
+.deck-pile {
+    height: 150px;
+    width: 130px;
+    position:absolute;
+    
+
+}
+.deck-container {
+    display:flex;
+    
+}
+.deck-card-image {
+    position: absolute;
+    height: 125px;
+    width:100px;
+    border: .1px;
+    
+}

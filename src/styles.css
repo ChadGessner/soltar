@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+.card-image {
+    height: 125px;
+    width:100px;
+    margin: 10px;
+}
+.m-10 {
+    margin:10px;
+}
+.ml-100{
+    margin-left:100px;
+}
+.human-resources {
+    margin:100px;
+}
+.justify-center {
+    justify-content: center;
+}
+.justify-around {
+    justify-content: space-around;
+}
+.justify-start {
+    justify-content: left;
+}
+.align-start {
+    align-items: flex-start;
+}
+.align-center {
+    align-items: center;
+}
+.text-center {
+    text-align:center; 
+}
+.flex {
+    display:flex;
+}
+.row {
+    flex-flow:row wrap;
+}
+.col {
+    flex-flow:column wrap;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.justify-around {
+    justify-content: space-around;
+}
+
+.w-100 {
+    width:100%;
+}
