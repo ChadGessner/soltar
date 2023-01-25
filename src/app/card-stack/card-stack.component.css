@@ -1,6 +1,7 @@
 .stack {
     position: absolute;
-    height: 1000px;
-    width: 100%;
-    margin-left: 300px;
+    display: flex;
+    
+    flex-flow:column wrap;
+    
 }

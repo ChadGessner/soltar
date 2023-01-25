@@ -1,6 +1,9 @@
-<div 
-[ngStyle]="positionMod(i)" 
-class="flex col stack justify-between" 
-*ngFor="let card of stack;index as i" >
-    <img  class="card-image" src={{getCardImage(card)}}>
+<div class="flex justify-start">
+    <div 
+    [ngStyle]="positionMod(i)" 
+    class="flex col stack" 
+    *ngFor="let card of hideCards();index as i" >
+        <img  class="card-image" src={{getCardImage(card)}}>
+    </div>
 </div>
+

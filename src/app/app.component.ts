@@ -59,6 +59,6 @@ export class AppComponent implements OnInit{
     })
   }
   public positionMod(index:number) {
-    return {right: `${140 * index}px`}
+    return {right: `${120 * index}px`}
   }
 }

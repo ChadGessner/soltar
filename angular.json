@@ -102,5 +102,8 @@
       }
     }
   },
-  "defaultProject": "soltar"
+  "defaultProject": "soltar",
+  "cli": {
+    "analytics": "2fb9434f-cc00-4e1d-b3f0-da295bde5e83"
+  }
 }

@@ -1,36 +1,31 @@
 import {Injectable, OnInit, Output, EventEmitter} from '@angular/core';
-import { watchFile } from 'fs';
+
 import { Card } from 'src/Models/card.model';
 import { ApiService } from './api.service';
 import {Subject, from, Observable} from 'rxjs';
-import {map} from 'rxjs';
+
 
 @Injectable()
 export class GameService implements OnInit{
     deck:Card[] = [];
     cardColumns:Card[][] = []
     columnsObservable:Observable<Card[]> = new Observable<Card[]>();
-    isFetching = false;
     deckObservable:Observable<Card> = new Observable<Card>();
     
     constructor(private api:ApiService) {
-        this.isFetching = false;
          this.api.fetchPosts().subscribe((cards) => {
-            this.isFetching = true;
-            console.log(this.isFetching);
             this.getDeck(cards);
             this.deckObservable = from(this.deck);
         })
-        this.isFetching = false;
-        
+
     }
     ngOnInit(): void {
         
     }
-    deckNotIsHidden() {
-        this.deck.forEach((c,i)=>{
+    deckNotIsHidden(stack:Card[]) {
+        stack.forEach((c,i)=>{
             c.isHidden = true;
-            if(i === this.deck.length-1){
+            if(i === stack.length - 1){
                 c.isHidden = false;
             }
         })
@@ -52,7 +47,7 @@ export class GameService implements OnInit{
         let card:Card = this.deck[this.deck.length-1];
         console.log(this.deck[this.deck.length-1])
         this.deck = this.deck.slice(0,this.deck.length-1)
-        this.deckNotIsHidden();
+        
         this.deckObservable = from(this.deck);
         
         return card;

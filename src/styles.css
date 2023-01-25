@@ -2,7 +2,11 @@
 .card-image {
     height: 125px;
     width:100px;
-    margin: 10px;
+    
+    position:absolute;
+}
+.absolute {
+    position: absolute;
 }
 .m-10 {
     margin:10px;
@@ -13,14 +17,23 @@
 .human-resources {
     margin:100px;
 }
+.justify-right{
+    justify-content: right;
+}
+.justify-end {
+    justify-content: flex-end;
+}
 .justify-center {
     justify-content: center;
 }
 .justify-around {
     justify-content: space-around;
 }
-.justify-start {
+.justify-left {
     justify-content: left;
+}
+.justify-start {
+    justify-content: flex-start;
 }
 .align-start {
     align-items: flex-start;
@@ -46,7 +59,27 @@
 .justify-around {
     justify-content: space-around;
 }
-
+.bdr-b {
+    border: 1px solid blue;
+}
+.bdr-r {
+    border: 1px solid red;
+}
+.bdr {
+    border: 1px solid black;
+}
 .w-100 {
     width:100%;
+}
+.box-500 {
+    height: 500px;
+    width: 500px;
+}
+.box-400 {
+    height: 400px;
+    width: 400px;
+}
+.box-200{
+    height: 200px;
+    width: 200px;
 }

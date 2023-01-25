@@ -17,6 +17,10 @@ export class CardStackComponent implements OnInit {
     return this.game.fetchImage(card);
   }
   positionMod(index:number){
-    return { top : `${index * 40}px`}
+    return { top : `${index * 20}px`}
+  }
+  hideCards(){
+    this.game.deckNotIsHidden(this.stack);
+    return this.stack;
   }
 }

@@ -1,14 +1,22 @@
 
 
-<div  class="flex col justify-center align-center">
+<div class="flex col ">
   <button (click)="onClick()">Bunton</button>
   <h1 class="text-center">The Legend of Soltar</h1>
-  <div class=" flex col justify-center align-center ml-100" >
-    <app-deck ></app-deck>
+  <div class="flex col" >
+    <div class="flex col ">
+      <app-deck></app-deck>
+      <hr>
+    </div>
     
-    <hr style="margin:120px;">
-      <div class="flex row " *ngFor="let stack of cardColumns; index as i">
-        <div style="position:absolute" [ngStyle]="positionMod(i)">
+    
+    
+      <div 
+      class=" flex " 
+      *ngFor="let stack of cardColumns.reverse(); index as i">
+        <div 
+        class="absolute flex" 
+        [ngStyle]="positionMod(i)">
           <app-card-stack [stack]="stack" ></app-card-stack>
         </div>
           
