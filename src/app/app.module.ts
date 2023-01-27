@@ -8,12 +8,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DeckComponent } from './deck/deck.component';
 import { CardStackComponent } from './card-stack/card-stack.component';
+import { ControlPanelComponent } from './control-panel/control-panel.component';
+import { DragCardDirective } from './drag-card.directive';
+import { DropCardDirective } from './drop-card.directive';
+import { ThreeStackComponent } from './three-stack/three-stack.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DeckComponent,
-    CardStackComponent
+    CardStackComponent,
+    ControlPanelComponent,
+    DragCardDirective,
+    DropCardDirective,
+    ThreeStackComponent
   ],
   imports: [
     BrowserModule,

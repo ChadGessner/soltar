@@ -1,9 +1,15 @@
-<div class="flex justify-start">
+<div class="h-100">
+    <div class="h-100"></div>
     <div 
+    id={{card.imageUrl}}
     [ngStyle]="positionMod(i)" 
-    class="flex col stack" 
+    class="stack down-200" 
     *ngFor="let card of hideCards();index as i" >
-        <img  class="card-image" src={{getCardImage(card)}}>
+        <img 
+        
+        appDragCard
+        class="card-image" 
+        src={{getCardImage(card)}}>
     </div>
 </div>
 

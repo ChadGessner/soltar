@@ -1,26 +1,30 @@
+<app-control-panel></app-control-panel>
 
-
-<div class="flex col ">
-  <button (click)="onClick()">Bunton</button>
-  <h1 class="text-center">The Legend of Soltar</h1>
-  <div class="flex col" >
-    <div class="flex col ">
-      <app-deck></app-deck>
-      <hr>
-    </div>
-    
-    
-    
-      <div 
-      class=" flex " 
-      *ngFor="let stack of cardColumns.reverse(); index as i">
-        <div 
-        class="absolute flex" 
-        [ngStyle]="positionMod(i)">
-          <app-card-stack [stack]="stack" ></app-card-stack>
-        </div>
-          
-      </div>
-  </div>
+<div class="bg-black bdr-r">
+  <h1 class="text-center bg-black">The Legend of Soltar</h1>
+  <hr class="bg-black" >
 </div>
+<button class="btn-green" (click)="onClick()">Bunton</button>
+<div>
+  
+</div>
+<div 
+class="ml-100 mt-100" 
+*ngFor="let card of pileOfThree;index as i">
+  <app-three-stack appDragCard [cardDrawn]="card" ></app-three-stack>
+</div>
+<div 
+  *ngFor="let stack of cardColumns.reverse(); index as i">
+    <div 
+    class="absolute bdr-r flex justify-center" 
+    [ngStyle]="positionMod(i)">
+      <app-card-stack [stack]="stack" ></app-card-stack>
+    </div>
+</div>
+  <app-deck (click)="drawCard()" ></app-deck>
+  
+
 <router-outlet></router-outlet>
+
+
+<!-- C:\Users\Chad\Desktop\angular\personal-projects\soltar\src -->
