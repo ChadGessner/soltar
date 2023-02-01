@@ -6,4 +6,8 @@ export interface card {
     isHidden:boolean;
     reverseImage:string;
     imageUrl:string;
+    x:number;
+    y:number;
+    z:number;
+    pileNumber:number;    
 }
