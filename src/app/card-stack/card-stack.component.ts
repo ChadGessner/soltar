@@ -61,7 +61,7 @@ export class CardStackComponent implements OnInit {
     return { top : `${index * 10}px`}
   }
   hideCards(){
-    this.game.stackNotIsHidden();
+    
     return this.stack;
   }
 }

@@ -1,0 +1,16 @@
+<!-- <div 
+class="stack-of-three" *ngFor="let card of pileOfThree;index as i">
+    <img 
+    #stackOfThreeImage
+    
+    appDragCard
+    [ngStyle]="stackOfThreePositionMod(i)"
+    draggable="true" 
+    class="deck-card-image " 
+    src={{fetchImage(card,i)}}/>
+</div> -->
+<img 
+id={{id}}
+appDragCard
+class="card-image" 
+src={{fetchImage()}}/>
