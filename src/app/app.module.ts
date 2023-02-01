@@ -8,14 +8,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DeckComponent } from './deck/deck.component';
 import { CardStackComponent } from './card-stack/card-stack.component';
+
 import { DragCardDirective } from './drag-card.directive';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     DeckComponent,
     CardStackComponent,
+
     DragCardDirective
+
   ],
   imports: [
     BrowserModule,

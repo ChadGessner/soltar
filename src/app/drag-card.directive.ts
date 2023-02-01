@@ -1,3 +1,4 @@
+
 import { Directive, Renderer2, HostListener, ElementRef } from '@angular/core';
 import { GameService } from 'src/services/game.service';
 
@@ -23,4 +24,5 @@ export class DragCardDirective {
     @HostListener('document:mousedown', ['$event'])onMouseDown() {
 
     }
+
 }
