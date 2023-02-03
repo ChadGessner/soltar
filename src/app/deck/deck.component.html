@@ -1,8 +1,19 @@
 <div class="flex row bdr-r ">
-    <button (click)="subscribeDeck()" *ngIf="deck.length < 1">Clicky!</button>
+    <button 
+    (click)="subscribeDeck()" 
+    *ngIf="deck.length < 1"
+    >Clicky!</button>
     <div *ngIf="deck.length > 0" class="deck-container">
         <div class="deck-pile" *ngFor="let card of deck;index as i">
-            <img (click)="drawCard()" [ngStyle]="positionMod(i)" class="deck-card-image" src={{fetchImage(card,i)}}>
+            <img 
+            appDragCard
+            draggable="true"
+            
+            (click)="drawCard(card)" 
+            [ngStyle]="positionMod(card)" 
+            class="deck-card-image" 
+            src={{fetchImage(card,i)}}>
+            
         </div>
         
     </div>

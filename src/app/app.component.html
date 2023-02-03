@@ -1,23 +1,29 @@
 
 
-<div class="flex col ">
+<div class="flex col">
+  
   <button (click)="onClick()">Bunton</button>
   <h1 class="text-center">The Legend of Soltar</h1>
   <div class="flex col" >
-    <div class="flex col ">
-      <app-deck></app-deck>
+    
+    <app-deck></app-deck>
+    <div class="flex row" >
+      <app-three-stack></app-three-stack>
       <hr>
     </div>
     
     
     
       <div 
-      class=" flex " 
-      *ngFor="let stack of cardColumns.reverse(); index as i">
-        <div 
-        class="absolute flex" 
-        [ngStyle]="positionMod(i)">
-          <app-card-stack [stack]="stack" ></app-card-stack>
+      class=" flex row" 
+      
+      *ngFor="let stack of dealtCards; index as i">
+        <div *ngIf="stack.length > 0 && i > 1"
+          [ngStyle]="positionMod(stack[0])"
+        class="absolute flex " 
+        >
+        
+          <app-card-stack [index]="i"></app-card-stack> 
         </div>
           
       </div>

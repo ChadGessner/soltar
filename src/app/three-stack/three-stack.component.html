@@ -1,0 +1,16 @@
+<!-- <button (click)="onClick()">Click</button> -->
+<div class="absolute" *ngIf="threeStack.length > 0" >
+    <div 
+    class="absolute"
+    [ngStyle]="positionMod(card)"
+    *ngFor="let card of threeStack;index as i">
+        <img 
+        (click)="onDrawCard($event, card, i)"
+        (mouseup)="onDrawCard($event, card, i)"
+        appDragCard
+        class="deck-card-image" 
+        src={{fetchImage(card,i)}}
+         >
+    </div>
+</div>
+

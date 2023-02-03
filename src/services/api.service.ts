@@ -24,7 +24,7 @@ export class ApiService implements OnInit{
           (responseData:{[key:string]:card})=> {
             const deck:Card[] = [];
             for(const key in responseData){
-                console.log(key);
+                //console.log(key);
                 
               deck.push(responseData[key]);
             }
@@ -37,7 +37,7 @@ export class ApiService implements OnInit{
     
     }
     public giveDeck():Card[]{
-        console.log(this.Deck);
+        //console.log(this.Deck);
         return this.Deck;
     }
     

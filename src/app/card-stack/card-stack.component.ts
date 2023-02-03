@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import { Component, OnInit ,Input, Renderer2} from '@angular/core';
 import { Card } from 'src/Models/card.model';
 import { GameService } from 'src/services/game.service';
 
@@ -8,19 +8,44 @@ import { GameService } from 'src/services/game.service';
   styleUrls: ['./card-stack.component.css']
 })
 export class CardStackComponent implements OnInit {
-  @Input()stack:Card[] = []
-  constructor(private game:GameService) { }
+  cardColumns:Card[][] = [];
+  stack:Card[] = [];
+  @Input() index:number = -1;
+  constructor(private game:GameService, private render:Renderer2) { }
 
   ngOnInit(): void {
+    this.game.currentCardData$
+    .subscribe(cards => this.cardColumns = cards);
+    this.stack = this.cardColumns[this.index]
   }
+  onDrawCard(event:MouseEvent, card:Card, index:number){
+    // console.log(event.target);
+    // console.log(card);
+    this.game.onUpdate();
+    // this.render.setStyle(
+    //  event.target,
+    //  'top',
+    //  `${card.y}px`
+    // )
+    // this.render.setStyle(
+    //  event.target,
+    //  'left',
+    //  `${card.x}px`
+    // )
+    // this.render.setStyle(
+    //  event.target,
+    //  'z-index',
+    //  `${card.z}px`
+    // )
+
+ }
   getCardImage(card:Card){
     return this.game.fetchImage(card);
   }
-  positionMod(index:number){
-    return { top : `${index * 20}px`}
+  positionMod(card:Card){
+    return { top : `${card.y}px`}
   }
   hideCards(){
-    this.game.deckNotIsHidden(this.stack);
     return this.stack;
   }
 }

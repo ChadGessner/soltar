@@ -1,9 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    background-color: transparent;
+}
+
 .card-image {
     height: 125px;
     width:100px;
-    
     position:absolute;
+}
+.deck-card-image {
+    position: absolute;
+    height: 125px;
+    width:100px;
+    border: .1px;
+    
 }
 .absolute {
     position: absolute;
