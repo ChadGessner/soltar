@@ -14,15 +14,7 @@ import { GameService } from 'src/services/game.service';
 })
 export class DragCardDirective implements OnInit {
   cardColumns:Card[][] = [
-    [],
-     [],
-      [],
-       [],
-        [],
-         [],
-          [],
-           [],
-            []
+
   ]
   threeStack:Card[] = [];
   mouseX:number = -1;
@@ -37,9 +29,7 @@ export class DragCardDirective implements OnInit {
     private render:Renderer2, 
     private game:GameService, 
     private el:ElementRef)  { 
-      
-      
-      
+
       this.game.currentCardData$.subscribe(cards => this.cardColumns = cards);
   }
   isTarget(e:MouseEvent){
@@ -49,13 +39,23 @@ export class DragCardDirective implements OnInit {
     return this.el.nativeElement.src === "https://localhost:7043/images/backside.png";
   }
   getCurrentTargetCard(e:MouseEvent){
-    console.log(this.el.nativeElement.src);
-    
+    let x = e.target as HTMLElement;
+    if(x && x.hasAttribute('name')){
+      return this.game.cardColumns[0][this.game.cardColumns.length - 1];
+    }
     return this.game.deck
     .filter(c=> c.imageUrl === '/' + this.el.nativeElement.src
     .split('/')
     .slice(-2)
     .join('/'))[0];
+  }
+  isInDeck(e:MouseEvent){
+    const element = e.target as HTMLElement;
+    if(element.hasAttribute('name')){
+      const name = element.getAttribute('name');
+      return Number(name) === this.cardColumns[0].length - 1;
+    }
+    return false;
   }
   @HostListener('document:mousedown', ['$event'])onMouseDown(e:MouseEvent){
     
@@ -65,14 +65,31 @@ export class DragCardDirective implements OnInit {
       const card = this.getCurrentTargetCard(e);
       this.originX = card.x;
       this.originY = card.y;
-      
       this.mouseIsDown = true;
       //let target = e.target;
-      
       this.mouseX = e.clientX;
       this.mouseY = e.clientY;
       this.elementX = e.clientX;
       this.elementY = e.clientY;
+    }
+    this.currentCard = this.getCurrentTargetCard(e);
+    if(this.isBackside() && this.isTarget(e) && (e.target as HTMLElement).hasAttribute('name') && this.isInDeck(e)){
+      
+      e.preventDefault();
+      this.game.drawCardFromDeck(this.currentCard)
+      this.currentCard.isHidden = false;
+      this.render.setStyle(
+        e.target,
+        'top',
+        `${this.currentCard.x as number }px`,
+      )
+      this.render.setStyle(
+        e.target,
+        'left',
+        `${this.currentCard.y as number }px`,
+      )
+      
+      //console.log(this.currentCard)
     }
   }
   @HostListener('document:mousemove', ['$event'])onMouseMove(e:MouseEvent){

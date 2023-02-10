@@ -10,15 +10,7 @@ import { GameService } from 'src/services/game.service';
 })
 export class ThreeStackComponent implements OnInit {
   cardColumns:Card[][] = [
-    [],
-     [],
-      [],
-       [],
-        [],
-         [],
-          [],
-           [],
-            []
+
 ]
   threeStack:Card[] = [];
   deck:card[] = [];
@@ -30,8 +22,10 @@ export class ThreeStackComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.game.currentCardData$.subscribe(c=> this.threeStack = c[1])
+    this.game.currentCardData$.subscribe(c=> this.cardColumns = c)
     this.game.currentCardData$.subscribe(c=> this.threeStack = c[1])
+    this.game.currentCardData$.subscribe(c=> this.deck = c[0])
+    //this.threeStack = this.cardColumns[1];
     console.log(NgZone.isInAngularZone());
     this.mouseWasDown = false;
   }
@@ -43,9 +37,9 @@ export class ThreeStackComponent implements OnInit {
     this.ngZone.run(()=> {
       this.game.onUpdate();
      })
-     console.log(NgZone.isInAngularZone());
-     console.log(event.target);
-     console.log(card);
+    //  console.log(NgZone.isInAngularZone());
+    //  console.log(event.target);
+    //  console.log(card);
      
      this.render.setStyle(
       event.target,

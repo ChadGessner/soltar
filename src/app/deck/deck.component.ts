@@ -1,4 +1,16 @@
-import { Component, OnInit, Input, Output, Injectable, EventEmitter, Renderer2 } from '@angular/core';
+import { 
+  Component, 
+  OnInit, 
+  Input, 
+  Output, 
+  Injectable, 
+  EventEmitter, 
+  Renderer2,
+OnChanges,
+OnDestroy,
+SimpleChanges,
+AfterContentChecked
+ } from '@angular/core';
 import { Card } from 'src/Models/card.model';
 import { GameService } from 'src/services/game.service';
 import { NgStyle } from '@angular/common';
@@ -10,19 +22,12 @@ import { emit } from 'process';
   styleUrls: ['./deck.component.css']
 })
 @Injectable()
-export class DeckComponent implements OnInit {
+export class DeckComponent implements OnInit, AfterContentChecked {
   cardColumns:Card[][] = [
-    [],
-     [],
-      [],
-       [],
-        [],
-         [],
-          [],
-           [],
-            []
+
   ]
   deck:Card[] = [];
+  threeStack:Card[] = [];
   clicked:boolean = false;
   @Input()woke:number = 0;
   @Output() wasClicked:EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -31,38 +36,45 @@ export class DeckComponent implements OnInit {
   }
     
   ngOnInit(): void {
+    this.game.currentCardData$.subscribe(cards => this.cardColumns = cards)
     this.game.currentCardData$.subscribe(cards => this.deck = cards[0]);
-    
+    this.game.currentCardData$.subscribe(cards => this.threeStack = cards[1]);
+  }
+  ngAfterContentChecked(): void {
+    //this.onDrawCard()
   }
   
   // passWasClicked(event:MouseEvent){
     
   //   return new this.wasClicked.emit();
   // }
-  onDrawCard(event:MouseEvent, card:Card, index:number){
-    //  console.log(event.target);
-    //  console.log(card);
-    //  this.render.setStyle(
+  onDrawCard(){
+    this.threeStack.forEach(card => {
+      console.log(card.x)
+      console.log(card.y)
+    })
+    
+  }
+  drawCard(card:Card, event:MouseEvent) {
+    
+    event.preventDefault();
+    this.game.drawCardFromDeck(card);
+    
+    console.log(this.cardColumns[1].length);
+    // this.render.setStyle(
     //   event.target,
     //   'top',
-    //   `${card.x}px`
-    //  )
-    //  this.render.setStyle(
+    //   `${card.x}px`,
+    // )
+    // this.render.setStyle(
     //   event.target,
     //   'left',
     //   `${card.y}px`
-    //  )
-    //  this.render.setStyle(
-    //   event.target,
-    //   'z-index',
-    //   `${card.z}px`
-    //  )(mouseup)="onDrawCard($event,card,i)"
-    
-  }
-  drawCard(card:Card) {
-    this.game.drawCardFromDeck(card);
-    this.game.onUpdate();
-    //this.passWasClicked(event)
+    // )
+    //this.onDrawCard(event, card)
+    // this.game.currentCardData$.subscribe(cards => this.cardColumns = cards)
+    // this.game.currentCardData$.subscribe(cards => this.deck = cards[0]);
+    // this.game.currentCardData$.subscribe(cards => this.threeStack = cards[1]);
   }
   deckSubscription(deck:Card[]) {
     this.deck;
@@ -74,7 +86,13 @@ export class DeckComponent implements OnInit {
     return this.game.fetchImage(card);
   }
   positionMod(card:Card){
-    return {left : `${card.x}px`, top : `${card.y}px`} 
+    return card.isHidden ? {
+      left : `${card.x}px`,
+       top : `${card.y}px`
+      } : {
+        left : `900px`,
+        top : `300px`
+    }
      
   }
 }

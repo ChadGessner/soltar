@@ -1,0 +1,8 @@
+.empty-box {
+    position:absolute;
+    height: 120px;
+    width:120px;
+    border:1px solid black;
+    margin-left: 100px;
+    
+}

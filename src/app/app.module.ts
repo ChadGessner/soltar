@@ -10,6 +10,8 @@ import { DeckComponent } from './deck/deck.component';
 import { CardStackComponent } from './card-stack/card-stack.component';
 import { DragCardDirective } from './drag-card.directive';
 import { ThreeStackComponent } from './three-stack/three-stack.component';
+import { SuitStacksComponent } from './suit-stacks/suit-stacks.component';
+import { DropDirective } from './drop.directive';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { ThreeStackComponent } from './three-stack/three-stack.component';
     CardStackComponent,
     DragCardDirective,
     ThreeStackComponent,
+    SuitStacksComponent,
+    DropDirective,
     
   ],
   imports: [

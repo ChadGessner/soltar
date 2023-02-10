@@ -5,4 +5,8 @@
 .row-reverse {
     flex-flow:row-reverse wrap;
 }
+.hilarious-image{
+    position:absolute;
+    left: 1200px;
+}
 

@@ -19,7 +19,11 @@ export class GameService implements OnInit{
              [],
               [],
                [],
-                []
+                [],
+                  [],
+                   [],
+                    [],
+                     []
     ]
     private cardDataSource = new BehaviorSubject(this.cardColumns);
     private deckDataSource = new BehaviorSubject(this.deck);
@@ -45,7 +49,7 @@ export class GameService implements OnInit{
     setColumnStyleValues() {
         let count = 0
         
-        for(let i = 0; i < this.cardColumns.length; i++){
+        for(let i = 0; i < this.cardColumns.length - 4; i++){
             for(let j = 0; j < this.cardColumns[i].length; j++){
                 let card = this.cardColumns[i][j];
                 //this.updateCards();
@@ -61,11 +65,11 @@ export class GameService implements OnInit{
                             card.isHidden = true;
                             break;
                         case 1:
-                            this.threeStackTracker()
-                        //    card.x = (i * 20) + 120
-                        //    card.y = (i * 20) + 170
-                        //    card.z = i
-                        //    card.isHidden = false;
+                            //this.threeStackTracker()
+                           card.x = (j * 20) + 120
+                           card.y = (j * 20) + 170
+                           card.z = j
+                           card.isHidden = false;
                             break;
                         default:
                             card.x = i * 140;
@@ -88,10 +92,10 @@ export class GameService implements OnInit{
         this.deckDataSource.next(this.deck)
         this.cardDataSource.next(this.getCardColumns());
     }
-    threeStackSubscribe = (car:Card[]) => {
-        this.currentCardData$.subscribe(c=> car = c[1]);
-        return car;
-    }
+    // threeStackSubscribe = (car:Card[]) => {
+    //     this.currentCardData$.subscribe(c=> car = c[1]);
+    //     return car;
+    // }
     threeStackTracker() {
         const threeStack:Card[] = this.cardColumns[1].slice();
         for(let i = 0; i < this.cardColumns[1].length; i++){
@@ -99,8 +103,9 @@ export class GameService implements OnInit{
             this.cardColumns[1][i].y = (i * 20) + 170
             this.cardColumns[1][i].z = i
             this.cardColumns[1][i].isHidden = false
+            this.updateCards();
         }
-        this.updateCards();
+        
         //  threeStack.map(
         //     (c,i)=>{
         //         c.x = (i * 20) + 120
@@ -116,7 +121,7 @@ export class GameService implements OnInit{
         this.clearCardColumns();
         for(let i = 0; i < this.deck.length; i++){
             let card = this.deck[i];
-            for(let j = 0; j < this.cardColumns.length; j++){
+            for(let j = 0; j < this.cardColumns.length - 4; j++){
                 if(card.column === j){
                     this.cardColumns[j].push(card);
                     break;
@@ -130,7 +135,7 @@ export class GameService implements OnInit{
     allocateCardPositionsPostDeal(){
         let count = 0;
         let cards = this.cardColumns.flat();
-        for(let j = 0; j < this.cardColumns.length; j++){
+        for(let j = 0; j < this.cardColumns.length - 4; j++){
             this.cardColumns[j] = cards
             .filter(c=>c.column === j);
         }
@@ -155,7 +160,7 @@ export class GameService implements OnInit{
     dealCards() {
         this.allocateCardPositionsForInitialDeal();
         let count = 0;
-        for(let i = 2; i < this.cardColumns.length; i++){
+        for(let i = 2; i < this.cardColumns.length - 4; i++){
             for(let j = 0; j < i - 1; j++){
                 this.deck[count].column = i;
                 this.updateCards()

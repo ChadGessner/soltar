@@ -8,9 +8,9 @@
             <img 
             appDragCard
             draggable="true"
-            
-            (click)="drawCard(card)" 
+            name={{i}}
             [ngStyle]="positionMod(card)" 
+            
             class="deck-card-image" 
             src={{fetchImage(card,i)}}>
             

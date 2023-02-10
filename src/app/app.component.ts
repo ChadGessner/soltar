@@ -21,15 +21,7 @@ export class AppComponent implements OnInit, OnDestroy  {
   title = 'soltar';
   deck:Card[] = []
   cardColumns:Card[][] = [
-    [],
-     [],
-      [],
-       [],
-        [],
-         [],
-          [],
-           [],
-            []
+
 ]
   dealtCards:Card[][] = []
   //columnsSubject:Subject<Card[]> = new Subject<Card[]>();
@@ -87,7 +79,8 @@ export class AppComponent implements OnInit, OnDestroy  {
   
   public positionMod(card:Card) {
     return {
-      left: `${card.x}px`
+      left: `${card.x}px`,
+      bottom: '250px'
     }
   }
   ngOnDestroy(): void {

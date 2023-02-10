@@ -1,0 +1,24 @@
+<div class="flex justify-start">
+    <div 
+    
+    class="flex row stack" 
+    [ngStyle]="positionMod(i)" 
+    class="empty-box" 
+    appDrop
+     *ngFor="let cards of suitStacks; index as i" >
+            
+        <div 
+        
+        *ngFor="let card of cards;index as j ">
+            <img 
+            
+            draggable="true" 
+            appDragCard 
+            class="card-image" 
+             src={{getCardImage(card)}}> 
+        </div> 
+    </div>
+        
+</div>
+
+<!-- (mouseup)="onDrawCard($event,card,i)" -->
